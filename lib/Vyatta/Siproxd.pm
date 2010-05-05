@@ -1,5 +1,5 @@
 #
-# Module: Vyatta::Netflow.pm
+# Module: Vyatta::Siproxd.pm
 # 
 # **** License ****
 # This program is free software; you can redistribute it and/or modify
@@ -11,13 +11,13 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # General Public License for more details.
 #
-# This code was originally developed by Vyatta, Inc.
-# Portions created by Vyatta are Copyright (C) 2008-2009 Vyatta, Inc.
+# This code was originally developed by Managed I.T.
+# Portions created by Managed I.T. are Copyright (C) 2010 Managed I.T.
 # All Rights Reserved.
 # 
-# Author: Stig Thormodsrud
-# Date: June 2009
-# Description: Common netflow definitions/funcitions
+# Author: Kiall Mac Innes
+# Date: May 2010
+# Description: Common Siproxd definitions/funcitions
 # 
 # **** End License ****
 #

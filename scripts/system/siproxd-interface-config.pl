@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# Module: siproxd-interface-config.pl
+# Module: Vyatta::Siproxd.pm
 # 
 # **** License ****
 # This program is free software; you can redistribute it and/or modify
@@ -11,13 +11,13 @@
 # WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # General Public License for more details.
-# 
-# This code was originally developed by Vyatta, Inc.
-# Portions created by Vyatta are Copyright (C) 2008-2010 Vyatta, Inc.
+#
+# This code was originally developed by Managed I.T.
+# Portions created by Managed I.T. are Copyright (C) 2010 Managed I.T.
 # All Rights Reserved.
 # 
 # Author: Kiall Mac Innes
-# Date: April 2010
+# Date: May 2010
 # Description: Script to configure sip proxy (siproxd).
 # 
 # **** End License ****
