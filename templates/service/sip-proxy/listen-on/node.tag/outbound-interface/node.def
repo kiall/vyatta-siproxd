@@ -1,0 +1,3 @@
+type: txt
+help: Set interface to forward SIP traffic out [REQUIRED]
+allowed: /opt/vyatta/sbin/vyatta-interfaces.pl --show=all

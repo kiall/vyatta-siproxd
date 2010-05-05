@@ -1,0 +1,2 @@
+vyatta-siproxd: file-in-unusual-dir
+vyatta-siproxd: dir-or-file-in-opt

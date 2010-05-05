@@ -1,0 +1,14 @@
+Makefile
+Makefile.in
+aclocal.m4
+build-stamp
+config.guess
+config.log
+config.status
+config.sub
+debian/vyatta-siproxd
+debian/files
+debian/vyatta-siproxd.debhelper.log
+config
+configure
+INSTALL

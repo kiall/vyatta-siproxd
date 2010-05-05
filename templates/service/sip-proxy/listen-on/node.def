@@ -1,0 +1,11 @@
+multi:
+type: txt
+help: Set interface to listen for SIP traffic [REQUIRED]
+allowed: /opt/vyatta/sbin/vyatta-interfaces.pl --show=all
+create: sudo /opt/vyatta/sbin/siproxd-interface-config.pl --setup --dev=$VAR(@);
+end: if [ ${COMMIT_ACTION} = 'DELETE' ]; then
+         sudo /opt/vyatta/sbin/siproxd-interface-config.pl --stop --dev=$VAR(@); 
+     else
+         sudo /opt/vyatta/sbin/siproxd-interface-config.pl --update --dev=$VAR(@);
+     fi;
+

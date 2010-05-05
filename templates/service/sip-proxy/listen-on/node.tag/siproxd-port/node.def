@@ -1,0 +1,6 @@
+type: txt
+default: 5060
+help: Port to for siproxd to listen on.
+comp_help: Source port(s) can be specified as:
+  <port name>           Named port (any name in /etc/services, e.g., http)
+  <1-65535>             Numbered port

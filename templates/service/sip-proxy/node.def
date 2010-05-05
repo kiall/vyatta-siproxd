@@ -1,0 +1,9 @@
+priority: 920
+help: Configure SIP Proxy
+create: sudo /opt/vyatta/sbin/siproxd-config.pl --setup;
+end: if [ ${COMMIT_ACTION} = 'DELETE' ]; then
+         sudo /opt/vyatta/sbin/siproxd-config.pl --stop; 
+     else
+         sudo /opt/vyatta/sbin/siproxd-config.pl --update;
+     fi;
+
