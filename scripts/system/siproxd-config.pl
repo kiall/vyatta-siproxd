@@ -44,9 +44,8 @@ GetOptions(
 );
 
 if ($setup_siproxd) {
-	# TODO: Change from PREROUTING to VYATTA_PRE_DNAT_HOOK after kenwood
 	system("sudo iptables -t nat -N SIPROXD");
-	system("sudo iptables -t nat -I PREROUTING 1 -j SIPROXD");
+	system("sudo iptables -t nat -I VYATTA_PRE_DNAT_HOOK 1 -j SIPROXD");
 	exit 0;
 }
 
@@ -55,8 +54,7 @@ if ($update_siproxd) {
 }
 
 if ($stop_siproxd) {
-	# TODO: Change from PREROUTING to VYATTA_PRE_DNAT_HOOK after kenwood
-	system("sudo iptables -t nat -D PREROUTING -j SIPROXD");
+	system("sudo iptables -t nat -D VYATTA_PRE_DNAT_HOOK -j SIPROXD");
 	system("sudo iptables -t nat -F SIPROXD");
 	system("sudo iptables -t nat -X SIPROXD");
 
