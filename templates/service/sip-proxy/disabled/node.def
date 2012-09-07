@@ -1,3 +1,0 @@
-type: bool
-default: true
-help: Disable SIP proxy

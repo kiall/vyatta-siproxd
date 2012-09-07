@@ -46,12 +46,13 @@ sub is_running {
     my ($pid_file) = @_;
 
     if (-f $pid_file) {
-    my $pid = `cat $pid_file`;
-    $pid =~ s/\s+$//;  # chomp doesn't remove nl
-    my $ps = `ps -p $pid -o comm=`;
-    if (defined($ps) && $ps ne "") {
-        return $pid;
-    } 
+        my $pid = `cat $pid_file`;
+        $pid =~ s/\s+$//;  # chomp doesn't remove nl
+        my $ps = `ps -p $pid -o comm=`;
+
+        if (defined($ps) && $ps ne "") {
+            return $pid;
+        }
     }
     return 0;
 }
@@ -139,12 +140,12 @@ sub siproxd_generate_config {
     my ($interface) = @_;
 
     if (check_duplicate_sip_listen_port() == 1) {
-	print "Duplicate siproxd-port\n";
+    print "Duplicate siproxd-port\n";
         exit 1;
     }
 
     if (check_duplicate_sip_rtp_port() == 1) {
-	print "Duplicate rtp-port\n";
+    print "Duplicate rtp-port\n";
         exit 1;
     }
 
@@ -161,10 +162,8 @@ sub siproxd_generate_config {
     $output .= "if_outbound = $outbound_interface\n";
     $output .= "sip_listen_port = $siproxd_port\n";
     $output .= "daemonize = 1\n";
-    $output .= "silence_log = 1\n";
-    $output .= "log_calls = 1\n";
+    $output .= "silence_log = 0\n";
     $output .= "user = siproxd\n";
-    $output .= "chrootjail = /var/lib/siproxd/\n";
     $output .= "registration_file = /var/lib/siproxd/siproxd_registrations_$interface\n";
     $output .= "autosave_registrations = 300\n";
     $output .= "rtp_proxy_enable = 1\n";
@@ -177,7 +176,13 @@ sub siproxd_generate_config {
     $output .= "default_expires = 600\n";
     $output .= "debug_level = 0x00000000\n";
     $output .= "debug_port = 0\n";
-    
+    $output .= "plugindir=/usr/lib/siproxd/\n";
+    $output .= "load_plugin=plugin_logcall.so\n";
+    $output .= "load_plugin=plugin_stun.so\n";
+    $output .= "plugin_stun_server = stun.ekiga.net\n";
+    $output .= "plugin_stun_port = 3478\n";
+    $output .= "plugin_stun_period = 300\n";
+
     return siproxd_write_file("/etc/siproxd-$interface.conf", $output);
 }
 

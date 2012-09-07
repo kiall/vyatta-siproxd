@@ -2,4 +2,4 @@ type: txt
 help: Port range to allocate for incoming RTP traffic
 comp_help: Port(s) can be specified as:
   <start>-<end>         Numbered port range (e.g., 1001-1005)
-
+default: "7070-7089"
