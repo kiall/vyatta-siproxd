@@ -50,30 +50,12 @@ if ($setup_siproxd) {
 
 if ($update_siproxd) {
 	siproxd_generate_config($interface);
-	my $orig_listen_port = $config->returnOrigValue("service sip-proxy listen-on $interface listen-port");
-	my $listen_port = $config->returnValue("service sip-proxy listen-on $interface listen-port");
-
-	my $orig_siproxd_port = $config->returnOrigValue("service sip-proxy listen-on $interface siproxd-port");
-	my $siproxd_port = $config->returnValue("service sip-proxy listen-on $interface siproxd-port");
-
-	if (defined $orig_listen_port && $orig_listen_port != $listen_port) {
-		system("sudo iptables -t nat -D SIPROXD -m udp -p udp -i $interface --destination-port $orig_listen_port -j REDIRECT");
-		system("sudo iptables -t nat -A SIPROXD -m udp -p udp -i $interface --destination-port $listen_port -j REDIRECT --to-port $siproxd_port");
-	} elsif (!defined $orig_listen_port) {
-		system("sudo iptables -t nat -A SIPROXD -m udp -p udp -i $interface --destination-port $listen_port -j REDIRECT --to-port $siproxd_port");
-	}
-
 	restart_daemon($interface);
 
 	exit 0;
 }
 
 if ($stop_siproxd) {
-	# Sometimes the rule is already gone (eg "delete service sip-proxy")
-	my $listen_port = $config->returnOrigValue("service sip-proxy listen-on $interface listen-port");
-
-	system("sudo iptables -t nat -D SIPROXD -m udp -p udp -i $interface --destination-port $listen_port -j REDIRECT &> /dev/null");
-
 	stop_daemon($interface);
 	exit 0;
 }
